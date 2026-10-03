@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { listPracticeSession } from "../api/PracticeSession";
-import type { PracticeSession } from "../types/PracticeSession";
+import type { SyncedPracticeSession } from "../types/PracticeSession";
 
-type State = { rows: PracticeSession[]; loading: boolean; load: () => Promise<void> };
+type State = { rows: SyncedPracticeSession[]; loading: boolean; load: () => Promise<void> };
 
 export const usePracticeSessionStore = create<State>((set) => ({
   rows: [],

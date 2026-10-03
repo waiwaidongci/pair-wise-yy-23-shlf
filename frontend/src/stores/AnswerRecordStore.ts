@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { listAnswerRecord } from "../api/AnswerRecord";
-import type { AnswerRecord } from "../types/AnswerRecord";
+import type { SyncedAnswerRecord } from "../types/AnswerRecord";
 
-type State = { rows: AnswerRecord[]; loading: boolean; load: () => Promise<void> };
+type State = { rows: SyncedAnswerRecord[]; loading: boolean; load: () => Promise<void> };
 
 export const useAnswerRecordStore = create<State>((set) => ({
   rows: [],

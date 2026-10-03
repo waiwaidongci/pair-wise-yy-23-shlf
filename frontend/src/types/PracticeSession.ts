@@ -1,3 +1,5 @@
+import type { Synced } from "./SyncMeta";
+
 export interface PracticeSession {
   id: number;
   lesson_id: number;
@@ -7,3 +9,5 @@ export interface PracticeSession {
   score: number;
   mistake_count: number;
 }
+
+export type SyncedPracticeSession = Synced<PracticeSession>;

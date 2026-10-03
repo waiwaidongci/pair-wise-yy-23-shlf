@@ -1,18 +1,9 @@
 export const routes = [
-  {
-    "name": "学习卡片",
-    "route": "/learn"
-  },
-  {
-    "name": "练习模式",
-    "route": "/practice"
-  },
-  {
-    "name": "错题本",
-    "route": "/mistakes"
-  },
-  {
-    "name": "学习进度",
-    "route": "/progress"
-  }
+  { name: "学习卡片", route: "/learn" },
+  { name: "练习模式", route: "/practice" },
+  { name: "错题本", route: "/mistakes" },
+  { name: "学习进度", route: "/progress" },
+  { name: "同步中心", route: "/sync" }
 ] as const;
+
+export type AppRoute = (typeof routes)[number]["route"];

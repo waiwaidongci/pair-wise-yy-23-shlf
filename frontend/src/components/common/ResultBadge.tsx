@@ -1,5 +1,7 @@
-import { StatusBadge } from "./StatusBadge";
-
-export function ResultBadge({ title = "ResultBadge", value = "READY" }: { title?: string; value?: string }) {
-  return <div className="shared-widget"><strong>{title}</strong><StatusBadge value={value} /></div>;
+export function ResultBadge({ correct, label }: { correct: boolean; label?: string }) {
+  return (
+    <span className={correct ? "badge result-correct" : "badge result-wrong"}>
+      {label ?? (correct ? "答对" : "答错")}
+    </span>
+  );
 }
