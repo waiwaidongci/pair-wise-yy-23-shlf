@@ -1,21 +1,19 @@
-import { mockData } from "../mocks/seedData";
+import { getAll, put, putAll, STORES } from "../utils/storage";
+import { ensureSeeded } from "./init";
 import type { AnswerRecord } from "../types/AnswerRecord";
 
-const endpoint = "/api/answer-record";
-
 export async function listAnswerRecord(): Promise<AnswerRecord[]> {
-  if (typeof fetch !== "undefined" && endpoint.startsWith("/api") && false) {
-    try {
-      const res = await fetch(endpoint);
-      if (res.ok) return await res.json();
-    } catch {
-      // Local mock fallback keeps the UI available during offline review.
-    }
-  }
-  return [...(mockData.answerRecord as unknown as AnswerRecord[])];
+  await ensureSeeded();
+  return getAll<AnswerRecord>(STORES.ANSWER_RECORDS);
 }
 
-export async function saveAnswerRecord(payload: AnswerRecord) {
-  console.info("save AnswerRecord", payload);
+export async function saveAnswerRecord(payload: AnswerRecord): Promise<AnswerRecord> {
+  await ensureSeeded();
+  await put(STORES.ANSWER_RECORDS, payload as unknown as Record<string, unknown>, "recordKey");
   return payload;
+}
+
+export async function saveAnswerRecords(payloads: AnswerRecord[]): Promise<void> {
+  await ensureSeeded();
+  await putAll(STORES.ANSWER_RECORDS, payloads as unknown as Record<string, unknown>[], "recordKey");
 }
